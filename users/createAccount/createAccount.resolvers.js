@@ -1,4 +1,4 @@
-import client from "../client";
+import client from "../../client";
 import bcrypt from "bcrypt";
 
 export default {
@@ -27,7 +27,7 @@ export default {
         // hash password
         const hashPassword = await bcrypt.hash(password, 10);
         // save and return the user
-        return client.user.create({
+        await client.user.create({
           data: {
             username,
             email,
@@ -36,8 +36,14 @@ export default {
             password: hashPassword,
           },
         });
+        return {
+          ok: true,
+        };
       } catch (error) {
-        return error;
+        return {
+          ok: false,
+          error: "Can't create account",
+        };
       }
     },
   },

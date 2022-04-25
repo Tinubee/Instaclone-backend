@@ -9,19 +9,14 @@ export default gql`
     email: String!
     createAt: String!
     updateAt: String!
-  }
-
-  type Mutation {
-    createAccount(
-      firstName: String!
-      lastName: String
-      username: String!
-      email: String!
-      password: String!
-    ): User
-  }
-
-  type Query {
-    seeProfile(username: String!): User
+    bio: String
+    avatar: String
+    following: [User]
+    followers: [User]
+    totalFollowing: Int!
+    totalFollowers: Int!
   }
 `;
+
+// isFollowing: Boolean!
+// isMe: Boolean!
