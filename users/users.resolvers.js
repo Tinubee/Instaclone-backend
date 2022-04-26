@@ -22,5 +22,37 @@ export default {
           },
         },
       }),
+    isMe: ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      return id === loggedInUser.id;
+    },
+
+    isFollowing: async ({ id }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      // const exists = await client.user
+      //   .findUnique({ where: { username: loggedInUser.username } })
+      //   .following({
+      //     where: {
+      //       id,
+      //     },
+      //   });
+
+      const exists = await client.user.count({
+        where: {
+          username: loggedInUser.username,
+          following: {
+            some: {
+              id,
+            },
+          },
+        },
+      });
+
+      return Boolean(exists);
+    },
   },
 };
