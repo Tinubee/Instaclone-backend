@@ -49,7 +49,6 @@ export default {
       return false;
     },
   },
-
   Hashtag: {
     photos: ({ id }, { page }, { loggedInUser }) => {
       return client.hashtag

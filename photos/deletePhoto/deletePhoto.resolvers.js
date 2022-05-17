@@ -1,3 +1,4 @@
+import client from "../../client";
 import { protextedResolvers } from "../../users/users.utils";
 
 export default {
