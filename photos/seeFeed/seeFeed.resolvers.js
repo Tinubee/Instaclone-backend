@@ -3,8 +3,10 @@ import { protextedResolvers } from "../../users/users.utils";
 
 export default {
   Query: {
-    seeFeed: protextedResolvers((_, __, { loggedInUser }) =>
+    seeFeed: protextedResolvers((_, { offset }, { loggedInUser }) =>
       client.photo.findMany({
+        take: 2,
+        skip: offset,
         where: {
           OR: [
             {
