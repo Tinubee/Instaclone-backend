@@ -4,9 +4,11 @@
   "description": "",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
-    "dev": "nodemon --exec babel-node server --delay 2",
+    "dev": "nodemon --exec babel-node src/server --delay 2",
     "migrate": "npx prisma migrate dev",
-    "studio": "npx prisma studio"
+    "build": "babel src --out-dir build",
+    "studio": "npx prisma studio",
+    "start": "node build/server"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/Tinubee/Instaclone-backend#readme",
   "dependencies": {
+    "@babel/runtime": "^7.18.3",
     "@graphql-tools/load-files": "^6.5.3",
     "@graphql-tools/merge": "^8.2.10",
     "@graphql-tools/schema": "^8.3.10",
@@ -35,8 +38,10 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.9",
     "@babel/node": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.18.2",
     "@babel/preset-env": "^7.16.11",
     "nodemon": "^2.0.15",
     "prettier-plugin-prisma": "^3.12.0",
